@@ -6,3 +6,14 @@
     </nav>
 </template>
 
+<style scoped>
+  nav {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 8px;
+  }
+
+  li {
+    display: inline-block;
+    margin-right: 8px;
+  }
+</style>

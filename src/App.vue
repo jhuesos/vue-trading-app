@@ -22,6 +22,7 @@ export default {
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+  padding: 24px;
 }
 
 .router-link-active {
