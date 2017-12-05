@@ -1,19 +1,21 @@
 <template>
   <div id="app">
-    <header>
-      <nav>
-        <li><router-link to="/" exact>Home</router-link></li>
-        <li><router-link to="/portfolio">Portfolio</router-link></li>
-        <li><router-link to="/stocks">Stocks</router-link></li>
-      </nav>
-    </header>
-    <router-view/>
+    <app-header></app-header>
+
+    <transition name="fade">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
 <script>
+import Header from "./components/Header";
+
 export default {
-  name: 'app',
+  name: "app",
+  components: {
+    appHeader: Header
+  }
 };
 </script>
 
@@ -24,5 +26,13 @@ export default {
 
 .router-link-active {
   font-weight: bold;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: opacity 1s;
 }
 </style>
