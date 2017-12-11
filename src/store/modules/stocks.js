@@ -1,4 +1,4 @@
-import { NEXT_DAY } from '../mutation-types';
+import { NEXT_DAY } from '../mutationTypes';
 
 const state = [
   { name: 'BMW', price: 110 },

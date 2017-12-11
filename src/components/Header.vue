@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO } from '../store/mutation-types';
+import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO } from '../store/mutationTypes';
 
 export default {
   computed: {

@@ -13,7 +13,7 @@ import { mapMutations } from 'vuex';
 import {
   ADD_TO_PORTFOLIO,
   REMOVE_FROM_PORTFOLIO,
-} from '../store/mutation-types';
+} from '../store/mutationTypes';
 
 export default {
   props: {

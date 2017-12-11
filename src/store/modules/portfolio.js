@@ -3,7 +3,7 @@ import {
   REMOVE_FROM_PORTFOLIO,
   SAVE_PORTFOLIO,
   LOAD_PORTFOLIO,
-} from '../mutation-types';
+} from '../mutationTypes';
 import { savePortfolio, loadPortfolio } from '../../services/portfolioSync';
 import { STORAGE_KEY } from '../../config';
 

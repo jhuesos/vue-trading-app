@@ -4,7 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
-import { LOAD_PORTFOLIO } from './store/mutation-types';
+import { LOAD_PORTFOLIO } from './store/mutationTypes';
 
 Vue.config.productionTip = false;
 Vue.config.performance = false;
