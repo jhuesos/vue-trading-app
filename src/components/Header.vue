@@ -7,7 +7,7 @@
     </nav>
 
     <nav>
-      <li><button @click="newDay" class="btn-link">New Day</button></li>
+      <li><button @click="newDay" class="btn-link">End of Day</button></li>
       <li><button @click="loadPortfolio" class="btn-link">Load Portfolio</button></li>
       <li><button @click="savePortfolio" class="btn-link">Save Portfolio</button></li>
       <li>Funds: {{ funds | currency }}</li>
