@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <nav>
-      <li><router-link to="/" exact>Home</router-link></li>
+      <li><router-link to="/" exact><img src="../assets/logo.png" alt="vuejs logo" height="40px"></router-link></li>
       <li><router-link to="/portfolio">Portfolio</router-link></li>
       <li><router-link to="/stocks">Stocks</router-link></li>
     </nav>
@@ -28,12 +28,18 @@ export default {
     newDay() {
       this.$store.commit(NEXT_DAY);
     },
+    /* eslint-disable no-alert */
     savePortfolio() {
-      this.$store.dispatch(SAVE_PORTFOLIO);
+      if (window.confirm('Do you really want to save?')) {
+        this.$store.dispatch(SAVE_PORTFOLIO).then(() => window.alert('Saved!'));
+      }
     },
     loadPortfolio() {
-      this.$store.dispatch(LOAD_PORTFOLIO);
+      if (window.confirm('Do you really want to load?')) {
+        this.$store.dispatch(LOAD_PORTFOLIO).then(() => window.alert('Loaded!'));
+      }
     },
+    /* eslint-enable no-alert */
   },
 };
 </script>
@@ -41,13 +47,13 @@ export default {
 
 <style scoped>
 .container {
+  display: flex;
+  padding: 16px 24px;
+  justify-content: space-between;
+  align-items: end;
+  color: white;
   background-color: black;
   border-bottom: 2px solid #ccc;
-  padding-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 8px;
-  color: white;
 }
 
 a, .btn-link {
