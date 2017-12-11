@@ -8,13 +8,15 @@
 
     <nav>
       <li><button @click="newDay" class="btn-link">New Day</button></li>
+      <li><button @click="loadPortfolio" class="btn-link">Load Portfolio</button></li>
+      <li><button @click="savePortfolio" class="btn-link">Save Portfolio</button></li>
       <li>Funds: {{ funds | currency }}</li>
     </nav>
   </div>
 </template>
 
 <script>
-import { NEXT_DAY } from '../store/mutation-types';
+import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO } from '../store/mutation-types';
 
 export default {
   computed: {
@@ -25,6 +27,12 @@ export default {
   methods: {
     newDay() {
       this.$store.commit(NEXT_DAY);
+    },
+    savePortfolio() {
+      this.$store.dispatch(SAVE_PORTFOLIO);
+    },
+    loadPortfolio() {
+      this.$store.dispatch(LOAD_PORTFOLIO);
     },
   },
 };

@@ -1,10 +1,18 @@
-import { ADD_TO_PORTFOLIO, REMOVE_FROM_PORTFOLIO } from '../mutation-types';
+import {
+  ADD_TO_PORTFOLIO,
+  REMOVE_FROM_PORTFOLIO,
+  SAVE_PORTFOLIO,
+  LOAD_PORTFOLIO,
+} from '../mutation-types';
+import { savePortfolio, loadPortfolio } from '../../services/portfolioSync';
+import { STORAGE_KEY } from '../../config';
 
 const state = {
-  funds: 1000,
+  id: localStorage.getItem(STORAGE_KEY),
+  funds: 10000,
   stocks: {},
-
 };
+
 const getters = {
   portfolio(state, getters, rootState) {
     return Object.keys(state.stocks).map(name => ({
@@ -41,10 +49,34 @@ const mutations = {
     state.funds += (price * quantity);
   },
 };
+
+const actions = {
+  [SAVE_PORTFOLIO]: async function save(context) {
+    const { data } = await savePortfolio(context.state);
+    const { name: id } = data;
+
+    if (context.state.id === null) {
+      context.state.id = id;
+    }
+
+    return data;
+  },
+
+  [LOAD_PORTFOLIO]: async function load(context) {
+    const response = await loadPortfolio();
+    const { data } = response;
+
+    context.state.funds = data.funds;
+    context.state.stocks = { ...data.stocks };
+
+    return response;
+  },
+};
 /* eslint-enable no-param-reassign */
 
 export default {
   state,
   mutations,
   getters,
+  actions,
 };
