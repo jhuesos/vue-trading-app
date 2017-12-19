@@ -1,9 +1,14 @@
 import {
   ADD_TO_PORTFOLIO,
   REMOVE_FROM_PORTFOLIO,
+  SET_PORFOLIO,
+} from '../mutationTypes';
+import {
   SAVE_PORTFOLIO,
   LOAD_PORTFOLIO,
-} from '../mutationTypes';
+  BUY_STOCK,
+  SELL_STOCK,
+} from '../actionTypes';
 import { savePortfolio, loadPortfolio } from '../../services/portfolioSync';
 import { STORAGE_KEY } from '../../config';
 
@@ -34,6 +39,7 @@ const getters = {
 /* eslint-disable no-param-reassign */
 const mutations = {
   [ADD_TO_PORTFOLIO]: (state, { name, quantity, price }) => {
+    // TODO: use getters to get stuff from others
     state.stocks = { ...state.stocks, [name]: (state.stocks[name] || 0) + quantity };
     state.funds -= (price * quantity);
   },
@@ -48,9 +54,19 @@ const mutations = {
 
     state.funds += (price * quantity);
   },
+  [SET_PORFOLIO]: (state, portfolio) => {
+    state.funds = portfolio.funds;
+    state.stocks = { ...portfolio.stocks };
+  },
 };
 
 const actions = {
+  [BUY_STOCK]: function buyStock({ commit }, stock) {
+    commit(ADD_TO_PORTFOLIO, stock);
+  },
+  [SELL_STOCK]: function sellStock({ commit }, stock) {
+    commit(REMOVE_FROM_PORTFOLIO, stock);
+  },
   [SAVE_PORTFOLIO]: async function save(context) {
     const { data } = await savePortfolio(context.state);
     const { name: id } = data;
@@ -62,12 +78,11 @@ const actions = {
     return data;
   },
 
-  [LOAD_PORTFOLIO]: async function load(context) {
+  [LOAD_PORTFOLIO]: async function load({ commit }) {
     const response = await loadPortfolio();
     const { data } = response;
 
-    context.state.funds = data.funds;
-    context.state.stocks = { ...data.stocks };
+    commit(SET_PORFOLIO, data);
 
     return response;
   },

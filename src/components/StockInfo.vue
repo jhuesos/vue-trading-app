@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import {
-  ADD_TO_PORTFOLIO,
-  REMOVE_FROM_PORTFOLIO,
-} from '../store/mutationTypes';
+  BUY_STOCK,
+  SELL_STOCK,
+} from '../store/actionTypes';
 
 export default {
   props: {
@@ -50,12 +50,12 @@ export default {
         return;
       }
 
-      const mutation = (!this.sell
-        ? this.addToPortfolio
-        : this.removeFromPortfolio
+      const action = (!this.sell
+        ? this.buyStock
+        : this.sellStock
       ).bind(this);
 
-      mutation({
+      action({
         quantity: this.quantityToOperate,
         name: this.stock.name,
         price: this.stock.price,
@@ -63,9 +63,9 @@ export default {
 
       this.quantityToOperate = 0;
     },
-    ...mapMutations({
-      addToPortfolio: ADD_TO_PORTFOLIO,
-      removeFromPortfolio: REMOVE_FROM_PORTFOLIO,
+    ...mapActions({
+      buyStock: BUY_STOCK,
+      sellStock: SELL_STOCK,
     }),
   },
 };

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO } from '../store/mutationTypes';
+import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO } from '../store/actionTypes';
 
 export default {
   computed: {
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     newDay() {
-      this.$store.commit(NEXT_DAY);
+      this.$store.dispatch(NEXT_DAY);
     },
     /* eslint-disable no-alert */
     savePortfolio() {

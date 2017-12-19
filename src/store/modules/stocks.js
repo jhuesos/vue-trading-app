@@ -1,4 +1,5 @@
-import { NEXT_DAY } from '../mutationTypes';
+import { RANDOMIZE_PORTFOLIO } from '../mutationTypes';
+import { NEXT_DAY } from '../actionTypes';
 
 const state = [
   { name: 'BMW', price: 110 },
@@ -9,7 +10,7 @@ const state = [
 
 /* eslint-disable no-param-reassign */
 const mutations = {
-  [NEXT_DAY]: (state) => {
+  [RANDOMIZE_PORTFOLIO]: (state) => {
     const getNewStockValue = (price) => {
       // Max variation per day of 20%
       const difference = Math.random() * (0.20);
@@ -22,9 +23,16 @@ const mutations = {
     });
   },
 };
+
+const actions = {
+  [NEXT_DAY]: ({ commit }) => {
+    commit(RANDOMIZE_PORTFOLIO);
+  },
+};
 /* eslint-enable no-param-reassign */
 
 export default {
   state,
   mutations,
+  actions,
 };
