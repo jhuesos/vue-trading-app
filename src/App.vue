@@ -10,6 +10,7 @@
 
 <script>
 import Header from './components/Header';
+import { LOAD_PORTFOLIO } from './store/actionTypes';
 
 export default {
   name: 'app',
@@ -17,8 +18,8 @@ export default {
     appHeader: Header,
   },
   created() {
-    if (store.state.portfolio.id !== null) {
-      store.dispatch(LOAD_PORTFOLIO);
+    if (this.$store.state.portfolio.id !== null) {
+      this.$store.dispatch(LOAD_PORTFOLIO);
     }
   },
 };
