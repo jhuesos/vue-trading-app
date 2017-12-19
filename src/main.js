@@ -19,9 +19,3 @@ new Vue({
   router,
   render: h => h(App),
 });
-
-// Init app
-// TODO: Where is the best place to add initialization code in Vue?
-if (store.state.portfolio.id !== null) {
-  store.dispatch(LOAD_PORTFOLIO);
-}

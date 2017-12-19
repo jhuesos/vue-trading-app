@@ -16,6 +16,11 @@ export default {
   components: {
     appHeader: Header,
   },
+  created() {
+    if (store.state.portfolio.id !== null) {
+      store.dispatch(LOAD_PORTFOLIO);
+    }
+  },
 };
 </script>
 
