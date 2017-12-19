@@ -15,11 +15,11 @@ export default {
   },
   computed: {
     stocks() {
-      return this.$store.state.stocks;
+      return this.$store.getters.stocks;
     },
 
     funds() {
-      return this.$store.state.portfolio.funds;
+      return this.$store.getters.funds;
     },
   },
 };

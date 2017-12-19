@@ -13,7 +13,7 @@
 export default {
   computed: {
     funds() {
-      return this.$store.state.portfolio.funds;
+      return this.$store.getters.funds;
     },
   },
 };

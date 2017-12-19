@@ -8,7 +8,7 @@
 
     <nav>
       <li><button @click="newDay" class="btn-link">End of Day</button></li>
-      <li><button @click="loadPortfolio" class="btn-link">Load Portfolio</button></li>
+      <li><button @click="loadPortfolio" class="btn-link" :disabled="!wasPortfolioSaved">Load Portfolio</button></li>
       <li><button @click="savePortfolio" class="btn-link">Save Portfolio</button></li>
       <li>Funds: {{ funds | currency }}</li>
     </nav>
@@ -21,7 +21,10 @@ import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO } from '../store/actionTypes';
 export default {
   computed: {
     funds() {
-      return this.$store.state.portfolio.funds;
+      return this.$store.getters.funds;
+    },
+    wasPortfolioSaved() {
+      return this.$store.getters.portfolioId !== null;
     },
   },
   methods: {
@@ -35,6 +38,10 @@ export default {
       }
     },
     loadPortfolio() {
+      if (!this.wasPortfolioSaved) {
+        return;
+      }
+
       if (window.confirm('Do you really want to load?')) {
         this.$store.dispatch(LOAD_PORTFOLIO).then(() => window.alert('Loaded!'));
       }
@@ -67,9 +74,13 @@ a.router-link-exact-active {
   text-decoration: underline;
 }
 
-a:hover, .btn-link:hover {
+a:hover, .btn-link:hover(:not([disabled])) {
   text-decoration: underline;
   cursor: pointer;
+}
+
+button[disabled] {
+  text-decoration: line-through;
 }
 
 .btn-link {

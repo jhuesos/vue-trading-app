@@ -18,7 +18,7 @@ export default {
     appHeader: Header,
   },
   created() {
-    if (this.$store.state.portfolio.id !== null) {
+    if (this.$store.getters.portfolioId !== null) {
       this.$store.dispatch(LOAD_PORTFOLIO);
     }
   },

@@ -34,6 +34,12 @@ const getters = {
       }))
       .reduce((total, current) => total + (current.price * current.quantity), 0);
   },
+  portfolioId(state) {
+    return state.id;
+  },
+  funds(state) {
+    return state.funds;
+  },
 };
 
 /* eslint-disable no-param-reassign */
@@ -67,12 +73,12 @@ const actions = {
   [SELL_STOCK]: function sellStock({ commit }, stock) {
     commit(REMOVE_FROM_PORTFOLIO, stock);
   },
-  [SAVE_PORTFOLIO]: async function save(context) {
-    const { data } = await savePortfolio(context.state);
+  [SAVE_PORTFOLIO]: async function save({ state }) {
+    const { data } = await savePortfolio(state);
     const { name: id } = data;
 
-    if (context.state.id === null) {
-      context.state.id = id;
+    if (state.id === null) {
+      state.id = id;
     }
 
     return data;

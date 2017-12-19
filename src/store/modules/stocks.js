@@ -31,8 +31,13 @@ const actions = {
 };
 /* eslint-enable no-param-reassign */
 
+const getters = {
+  stocks: state => state,
+};
+
 export default {
   state,
   mutations,
   actions,
+  getters,
 };
