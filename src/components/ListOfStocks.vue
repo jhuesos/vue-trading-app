@@ -28,10 +28,18 @@ export default {
 .stocks-container {
   display: flex;
   justify-content: start;
+  flex-wrap: wrap;
 }
 
 .stock {
   margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 480px) {
+    .stock {
+      margin-right: 0;
+    }
 }
 </style>
 

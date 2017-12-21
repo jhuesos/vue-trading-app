@@ -79,6 +79,7 @@ section {
   padding: 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+  flex-basis: 250px;
 }
 
 header {
@@ -110,6 +111,13 @@ button {
   border: 1px solid #999;
   font-weight: bold;
   background-color: #eee;
+}
+
+@media (max-width: 480px) {
+    section {
+      /* padding: 8px; */
+      max-width: 480px;
+    }
 }
 </style>
 

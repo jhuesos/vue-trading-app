@@ -42,4 +42,14 @@ export default {
 .fade-enter-active {
   transition: opacity 1s;
 }
+
+body {
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+    #app {
+      padding: 8px;
+    }
+}
 </style>

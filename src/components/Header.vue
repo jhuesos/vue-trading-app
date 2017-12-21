@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <nav>
-      <li><router-link to="/" exact><img src="../assets/logo.png" alt="vuejs logo" height="40px"></router-link></li>
+      <li><router-link to="/" exact>Home</router-link></li>
       <li><router-link to="/portfolio">Portfolio</router-link></li>
       <li><router-link to="/stocks">Stocks</router-link></li>
     </nav>
@@ -86,10 +86,22 @@ button[disabled] {
 .btn-link {
   background-color: transparent;
   border:none;
+  padding: 0;
 }
 
 li {
   display: inline-block;
   margin-right: 8px;
+}
+
+@media (max-width: 480px) {
+    .container {
+      flex-direction: row;
+      padding: 8px 12px;
+    }
+
+    li {
+      display: block;
+    }
 }
 </style>
