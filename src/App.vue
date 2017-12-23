@@ -1,10 +1,25 @@
 <template>
   <div id="app">
-    <app-header></app-header>
+    <v-app dark>
+      <v-navigation-drawer clipped fixed v-model="drawer" app>
+        <app-header></app-header>
+      </v-navigation-drawer>
 
-    <transition name="fade">
-      <router-view/>
-    </transition>
+      <v-toolbar app>
+        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-toolbar-title>Trading App</v-toolbar-title>
+      </v-toolbar>
+
+      <v-content>
+        <v-container fluid>
+        <transition name="fade">
+          <router-view/>
+        </transition>
+        </v-container>
+      </v-content>
+
+      <v-footer app>FOOTER</v-footer>
+    </v-app>
   </div>
 </template>
 
@@ -17,6 +32,9 @@ export default {
   components: {
     appHeader: Header,
   },
+  data: () => ({
+    drawer: true,
+  }),
   created() {
     if (this.$store.getters.portfolioId !== null) {
       this.$store.dispatch(LOAD_PORTFOLIO);
@@ -27,8 +45,6 @@ export default {
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  padding: 24px;
 }
 
 .router-link-active {

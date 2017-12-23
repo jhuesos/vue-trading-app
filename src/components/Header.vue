@@ -1,9 +1,39 @@
 <template>
-  <div class="container">
+    <v-list>
+      <v-list-tile to="/" exact>
+        <v-list-tile-action>
+          <v-icon>dashboard</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>Dashboard</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+
+      <v-list-tile to="/portfolio">
+        <v-list-tile-action>
+          <v-icon>account_balance</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>Porfolio</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+
+      <v-list-tile to="/stocks">
+        <v-list-tile-action>
+          <v-icon>assessment</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>Stocks</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
+
+    <!-- <div class="container">
     <nav>
-      <li><router-link to="/" exact>Home</router-link></li>
+      <li></li>
       <li><router-link to="/portfolio">Portfolio</router-link></li>
       <li><router-link to="/stocks">Stocks</router-link></li>
+      <li><router-link to="/stocks">Signup</router-link></li>
     </nav>
 
     <nav>
@@ -12,7 +42,7 @@
       <li><button @click="savePortfolio" class="btn-link">Save Portfolio</button></li>
       <li>Funds: {{ funds | currency }}</li>
     </nav>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -63,7 +93,8 @@ export default {
   border-bottom: 2px solid #ccc;
 }
 
-a, .btn-link {
+a,
+.btn-link {
   color: white;
   font-weight: bold;
   text-decoration: none;
@@ -74,7 +105,8 @@ a.router-link-exact-active {
   text-decoration: underline;
 }
 
-a:hover, .btn-link:hover(:not([disabled])) {
+a:hover,
+.btn-link:hover(:not([disabled])) {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -85,7 +117,7 @@ button[disabled] {
 
 .btn-link {
   background-color: transparent;
-  border:none;
+  border: none;
   padding: 0;
 }
 
