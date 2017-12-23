@@ -1,16 +1,21 @@
 <template>
   <v-toolbar app>
     <v-toolbar-side-icon @click.stop="iconClicked"></v-toolbar-side-icon>
+
     <v-toolbar-title>Stock App</v-toolbar-title>
+
     <v-spacer></v-spacer>
+
     <v-toolbar-items>
       <v-btn flat @click="newDay">Next Day</v-btn>
       <v-btn flat>Login</v-btn>
     </v-toolbar-items>
+
     <v-menu bottom left offset-y>
       <v-btn icon slot="activator" dark>
         <v-icon>more_vert</v-icon>
       </v-btn>
+
       <v-list>
         <v-list-tile avatar>
           <v-list-tile-avatar>
@@ -22,7 +27,9 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-      <v-separator></v-separator>
+
+      <v-spacer></v-spacer>
+
       <v-list dense>
         <v-list-tile @click="savePortfolio">
           <v-list-tile-action>
