@@ -6,6 +6,11 @@ const state = [
   { name: 'Google', price: 200 },
   { name: 'Apple', price: 250 },
   { name: 'Twitter', price: 8 },
+  { name: 'Microsoft', price: 132 },
+  { name: 'Amazon', price: 75 },
+  { name: 'Santander', price: 80 },
+  { name: 'Spotify', price: 15 },
+  { name: 'Facebook', price: 100 },
 ];
 
 /* eslint-disable no-param-reassign */
