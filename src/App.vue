@@ -2,7 +2,7 @@
   <div id="app">
     <v-app dark>
       <v-navigation-drawer clipped fixed v-model="drawer" app>
-        <app-header></app-header>
+        <app-navigation></app-navigation>
       </v-navigation-drawer>
 
       <v-toolbar app>
@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import Header from './components/Header';
+import Navigation from './components/Navigation';
 import { LOAD_PORTFOLIO } from './store/actionTypes';
 
 export default {
   name: 'app',
   components: {
-    appHeader: Header,
+    appNavigation: Navigation,
   },
   data: () => ({
     drawer: true,
@@ -44,12 +44,6 @@ export default {
 </script>
 
 <style>
-#app {
-}
-
-.router-link-active {
-  font-weight: bold;
-}
 
 .fade-enter {
   opacity: 0;
@@ -57,15 +51,5 @@ export default {
 
 .fade-enter-active {
   transition: opacity 1s;
-}
-
-body {
-  margin: 0;
-}
-
-@media (max-width: 480px) {
-    #app {
-      padding: 8px;
-    }
 }
 </style>
