@@ -5,10 +5,7 @@
         <app-navigation></app-navigation>
       </v-navigation-drawer>
 
-      <v-toolbar app>
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Trading App</v-toolbar-title>
-      </v-toolbar>
+      <app-header @toggle-drawer="drawer = !drawer"></app-header>
 
       <v-content>
         <v-container fluid>
@@ -25,15 +22,17 @@
 
 <script>
 import Navigation from './components/Navigation';
+import Header from './components/Header';
 import { LOAD_PORTFOLIO } from './store/actionTypes';
 
 export default {
   name: 'app',
   components: {
     appNavigation: Navigation,
+    appHeader: Header,
   },
   data: () => ({
-    drawer: true,
+    drawer: false,
   }),
   created() {
     if (this.$store.getters.portfolioId !== null) {
