@@ -60,8 +60,4 @@ export default {
 .fade-enter-active {
   transition: opacity 1s;
 }
-
-.footer {
-  /* padding: 16px 16px; */
-}
 </style>
