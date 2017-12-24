@@ -1,7 +1,11 @@
 <template>
-    <div class="stocks-container">
-      <stock-info v-for="stock in stocks" :key="stock.name" :stock="stock" :max="getMax(stock)" :sell="sell"></stock-info>
-    </div>
+    <v-container grid-list-lg fluid>
+      <v-layout row wrap>
+        <v-flex xs12 sm4 lg3 v-for="stock in stocks" :key="stock.name" >
+          <stock-info :stock="stock" :max="getMax(stock)" :sell="sell"></stock-info>
+        </v-flex>
+      </v-layout>
+    </v-container>
 </template>
 
 <script>
