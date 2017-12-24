@@ -1,6 +1,6 @@
 <template>
-  <v-toolbar app>
-    <v-toolbar-side-icon @click.stop="iconClicked"></v-toolbar-side-icon>
+  <v-toolbar app clipped-left>
+    <v-toolbar-side-icon @click.stop="iconClicked" class="hidden-lg-and-up"></v-toolbar-side-icon>
 
     <v-toolbar-title>Stock App</v-toolbar-title>
 

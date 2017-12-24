@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app dark>
-      <v-navigation-drawer clipped fixed v-model="drawer" app>
+      <v-navigation-drawer clipped v-model="drawer" app>
         <app-navigation></app-navigation>
       </v-navigation-drawer>
 
@@ -36,7 +36,7 @@ export default {
     appHeader: Header,
   },
   data: () => ({
-    drawer: false,
+    drawer: true,
   }),
   created() {
     if (this.$store.getters.portfolioId !== null) {

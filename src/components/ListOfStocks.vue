@@ -1,7 +1,7 @@
 <template>
     <v-container grid-list-lg fluid>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg3 v-for="stock in stocks" :key="stock.name" >
+        <v-flex xs12 sm6 md4 v-for="stock in stocks" :key="stock.name" >
           <stock-info :stock="stock" :max="getMax(stock)" :sell="sell"></stock-info>
         </v-flex>
       </v-layout>
