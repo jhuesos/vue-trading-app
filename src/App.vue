@@ -15,7 +15,11 @@
         </v-container>
       </v-content>
 
-      <v-footer app>FOOTER</v-footer>
+      <v-footer app class="pa-3 body-2">
+        <span>Funds available: {{ funds | currency }}</span>
+        <v-spacer></v-spacer>
+        <span>&copy; Jaime Vega</span>
+      </v-footer>
     </v-app>
   </div>
 </template>
@@ -39,6 +43,11 @@ export default {
       this.$store.dispatch(LOAD_PORTFOLIO);
     }
   },
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+  },
 };
 </script>
 
@@ -50,5 +59,9 @@ export default {
 
 .fade-enter-active {
   transition: opacity 1s;
+}
+
+.footer {
+  /* padding: 16px 16px; */
 }
 </style>
