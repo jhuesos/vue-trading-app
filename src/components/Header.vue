@@ -1,17 +1,20 @@
 <template>
   <v-toolbar app clipped-left>
-    <v-toolbar-side-icon @click.stop="iconClicked" class="hidden-lg-and-up"></v-toolbar-side-icon>
+    <v-toolbar-side-icon
+      @click.stop="iconClicked"
+      class="hidden-lg-and-up"
+      v-if="isUserLoggedIn"
+    ></v-toolbar-side-icon>
 
     <v-toolbar-title>Stock App</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
     <v-toolbar-items>
-      <v-btn flat @click="newDay">Next Day</v-btn>
-      <v-btn flat>Login</v-btn>
+      <v-btn flat @click="newDay" v-if="isUserLoggedIn">Next Day</v-btn>
     </v-toolbar-items>
 
-    <v-menu bottom left offset-y>
+    <v-menu bottom left offset-y v-if="isUserLoggedIn">
       <v-btn icon slot="activator" dark>
         <v-icon>more_vert</v-icon>
       </v-btn>
@@ -64,6 +67,10 @@ export default {
     },
     wasPortfolioSaved() {
       return this.$store.getters.portfolioId !== null;
+    },
+
+    isUserLoggedIn() {
+      return this.$store.getters.isUserLoggedIn;
     },
   },
   methods: {

@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <v-app dark>
-      <v-navigation-drawer clipped v-model="drawer" app>
+      <v-navigation-drawer
+        clipped
+        v-model="drawer"
+        app
+        v-if="isUserLoggedIn"
+      >
         <app-navigation></app-navigation>
       </v-navigation-drawer>
 
@@ -16,7 +21,7 @@
       </v-content>
 
       <v-footer app class="pa-3 body-2">
-        <span>Funds available: {{ funds | currency }}</span>
+        <span  v-if="isUserLoggedIn">Funds available: {{ funds | currency }}</span>
         <v-spacer></v-spacer>
         <span>&copy; Jaime Vega</span>
       </v-footer>
@@ -46,6 +51,10 @@ export default {
   computed: {
     funds() {
       return this.$store.getters.funds;
+    },
+
+    isUserLoggedIn() {
+      return this.$store.getters.isUserLoggedIn;
     },
   },
 };
