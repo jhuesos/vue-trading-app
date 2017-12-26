@@ -37,5 +37,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'import/prefer-default-export': 0,
     'no-shadow': 0,
+    'no-console': 0
   }
 }
