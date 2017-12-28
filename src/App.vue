@@ -6,6 +6,7 @@
         v-model="drawer"
         app
         v-if="isUserLoggedIn"
+        disable-route-watcher
       >
         <app-navigation></app-navigation>
       </v-navigation-drawer>
@@ -32,7 +33,7 @@
 <script>
 import Navigation from './components/Navigation';
 import Header from './components/Header';
-import { LOAD_PORTFOLIO } from './store/actionTypes';
+import { LOAD_PORTFOLIO, LOAD_TOKEN_INFO_FROM_LOCAL } from './store/actionTypes';
 
 export default {
   name: 'app',
@@ -44,8 +45,16 @@ export default {
     drawer: true,
   }),
   created() {
+    this.drawer = this.$vuetify.breakpoint.lg;
+
     if (this.$store.getters.portfolioId !== null) {
       this.$store.dispatch(LOAD_PORTFOLIO);
+    }
+
+    this.$store.dispatch(LOAD_TOKEN_INFO_FROM_LOCAL);
+
+    if (this.isUserLoggedIn) {
+      this.$router.push({ name: 'Home' });
     }
   },
   computed: {

@@ -2,20 +2,20 @@
   <section>
     <h1>Login</h1>
 
-    <v-container fluid grid-list-lg>
+    <v-container grid-list-lg>
       <v-layout align-center wrap>
         <v-flex xs12 lg8>
           <v-form ref="form" v-model="valid">
             <v-text-field
               label="Email"
-              v-model="email"
+              v-model.trim="email"
               required
               type="email"
             ></v-text-field>
 
             <v-text-field
               label="Password"
-              v-model="password"
+              v-model.trim="password"
               required
               type="password"
               :append-icon="e1 ? 'visibility' : 'visibility_off'"
@@ -28,7 +28,7 @@
           </v-form>
         </v-flex>
 
-        <v-flex xs12>
+        <v-flex xs12 lg8>
           <hr>
         </v-flex>
 
@@ -41,11 +41,13 @@
 </template>
 
 <script>
+import { LOG_IN } from '../store/actionTypes';
+
 export default {
   data: () => ({
     valid: false,
-    email: null,
-    password: null,
+    email: 'jhuesos@gmail.com',
+    password: '123456',
     // Control visibility of password in the password inputs
     e1: true,
   }),
@@ -53,7 +55,8 @@ export default {
   methods: {
     login() {
       if (this.$refs.form.validate()) {
-        console.log(this.email, this.password);
+        this.$store.dispatch(LOG_IN, { email: this.email, password: this.password })
+          .then(() => this.$router.push({ name: 'Home' }));
       }
     },
   },

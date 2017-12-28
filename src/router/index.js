@@ -18,6 +18,15 @@ const redirectIfNotLoggedIn = (to, from, next) => {
   next();
 };
 
+const redirectToHomeIfLoggedIn = (to, from, next) => {
+  if (store.getters.isUserLoggedIn) {
+    next({ path: '/' });
+    return;
+  }
+
+  next();
+};
+
 const router = new Router({
   routes: [
     {
@@ -42,11 +51,13 @@ const router = new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup,
+      beforeEnter: redirectToHomeIfLoggedIn,
     },
     {
       path: '/login',
       name: 'Login',
       component: Login,
+      beforeEnter: redirectToHomeIfLoggedIn,
     },
   ],
 });

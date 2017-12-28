@@ -2,27 +2,27 @@
   <section>
     <h1>Signup</h1>
 
-    <v-container>
-      <v-layout align-center>
+    <v-container grid-list-lg>
+      <v-layout align-center wrap>
         <v-flex xs12 lg8>
           <v-form ref="form" v-model="valid">
             <v-text-field
               label="Name"
-              v-model="name"
+              v-model.trim="name"
               required
               autofocus
             ></v-text-field>
 
             <v-text-field
               label="Email"
-              v-model="email"
+              v-model.trim="email"
               required
               type="email"
             ></v-text-field>
 
             <v-text-field
               label="Age"
-              v-model.number="age"
+              v-model.trim.number="age"
               required
               type="number"
               max="150"
@@ -31,7 +31,7 @@
 
             <v-text-field
               label="Password"
-              v-model="password"
+              v-model.trim="password"
               required
               type="password"
               :append-icon="e1 ? 'visibility' : 'visibility_off'"
@@ -42,7 +42,7 @@
 
             <v-text-field
               label="Repeat password"
-              v-model="repeatPassword"
+              v-model.trim="repeatPassword"
               required
               type="password"
               :append-icon="e2 ? 'visibility' : 'visibility_off'"
@@ -53,7 +53,7 @@
 
             <v-checkbox
               label="Do you agree with our fancy rules and conditions?"
-              v-model="agreement"
+              v-model.trim="agreement"
               required
             ></v-checkbox>
 
@@ -63,21 +63,31 @@
 
           </v-form>
         </v-flex>
+
+        <v-flex xs12 lg8>
+          <hr>
+        </v-flex>
+
+        <v-flex xs12>
+          Or if you already have an account, then <v-btn to="/login">Login</v-btn>
+        </v-flex>
       </v-layout>
     </v-container>
   </section>
 </template>
 
 <script>
+import { SIGN_UP } from '../store/actionTypes';
+
 export default {
   data: () => ({
     valid: false,
-    name: '',
-    email: '',
-    age: '',
-    password: '',
-    repeatPassword: '',
-    agreement: false,
+    name: 'jaime',
+    email: 'jhuesos@gmail.com',
+    age: 15,
+    password: 123456,
+    repeatPassword: 123456,
+    agreement: true,
     // Control visibility of password in the password inputs
     e1: true,
     e2: true,
@@ -86,7 +96,13 @@ export default {
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
-        // console.log('valid!');
+        this.$store.dispatch(SIGN_UP, {
+          name: this.name,
+          email: this.email,
+          age: this.age,
+          password: this.password,
+          returnSecureToken: true,
+        }).then(() => this.$router.push({ name: 'Home' }));
       }
     },
     clear() {

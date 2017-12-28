@@ -10,10 +10,10 @@ import {
   SELL_STOCK,
 } from '../actionTypes';
 import { savePortfolio, loadPortfolio } from '../../services/portfolioSync';
-import { STORAGE_KEY } from '../../config';
+import { LOCAL_STORAGE_KEYS } from '../../config';
 
 const state = {
-  id: localStorage.getItem(STORAGE_KEY),
+  id: localStorage.getItem(LOCAL_STORAGE_KEYS.portfolioId),
   funds: 10000,
   stocks: {},
 };
@@ -45,7 +45,6 @@ const getters = {
 /* eslint-disable no-param-reassign */
 const mutations = {
   [ADD_TO_PORTFOLIO]: (state, { name, quantity, price }) => {
-    // TODO: use getters to get stuff from others
     state.stocks = { ...state.stocks, [name]: (state.stocks[name] || 0) + quantity };
     state.funds -= (price * quantity);
   },

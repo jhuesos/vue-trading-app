@@ -46,7 +46,7 @@
           </v-list-tile-action>
           <v-list-tile-title>Load</v-list-tile-title>
         </v-list-tile>
-        <v-list-tile>
+        <v-list-tile @click="logout">
           <v-list-tile-action>
             <v-icon>exit_to_app</v-icon>
           </v-list-tile-action>
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO } from '../store/actionTypes';
+import { NEXT_DAY, SAVE_PORTFOLIO, LOAD_PORTFOLIO, LOG_OUT } from '../store/actionTypes';
 
 export default {
   computed: {
@@ -94,6 +94,9 @@ export default {
       if (window.confirm('Do you really want to load?')) {
         this.$store.dispatch(LOAD_PORTFOLIO).then(() => window.alert('Loaded!'));
       }
+    },
+    logout() {
+      this.$store.dispatch(LOG_OUT).then(() => this.$router.push({ name: 'Login' }));
     },
     /* eslint-enable no-alert */
   },

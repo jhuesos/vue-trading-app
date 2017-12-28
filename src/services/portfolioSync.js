@@ -1,7 +1,7 @@
 import { dbConnection } from '../axios';
-import { STORAGE_KEY } from '../config';
+import { LOCAL_STORAGE_KEYS } from '../config';
 
-let id = localStorage.getItem(STORAGE_KEY);
+let id = localStorage.getItem(LOCAL_STORAGE_KEYS.portfolioId);
 
 export async function savePortfolio(portfolio) {
   const isUpdate = id !== null;
@@ -15,7 +15,7 @@ export async function savePortfolio(portfolio) {
 
   if (!isUpdate) {
     id = response.data.name;
-    localStorage.setItem(STORAGE_KEY, id);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.portfolioId, id);
   }
 
   return response;
